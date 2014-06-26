@@ -23,7 +23,7 @@ class BarFormWithFieldsExcluded(forms.ModelForm):
 
 
 class BarFormWithCustomField(BarFormWithFieldsSpecified):
-    custom_field = forms.CharField(_('custom'))
+    custom_field = forms.CharField(label=_('custom'))
 
 
 class MultilingualBarFormAllFields(MultilingualModelForm):
