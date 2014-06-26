@@ -437,6 +437,15 @@ class Tests(LinguoTests):
         self.assertEqual(Lan.objects.get().name, 'Test fr')
         self.assertEqual(Lan.objects.get().language, 'en')
 
+    def testQuerysetOnlyReturnsCorrectLanguage(self):
+        obj = Foo.objects.create(name='Foo', price=12)
+        obj.translate(name='FooFr', language='fr')
+        obj.save()
+
+        translation.activate('fr')
+        obj = Foo.objects.only('name').get(pk=obj.pk)
+        self.assertEqual(obj.name, 'FooFr')
+
 
 class InheritanceTests(LinguoTests):
 

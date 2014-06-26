@@ -74,6 +74,14 @@ class MultilingualQuerySet(models.query.QuerySet):
 
         return super(MultilingualQuerySet, self)._filter_or_exclude(negate, *args, **kwargs)
 
+    def only(self, *fields):
+        raise RuntimeError('.only not supported with MultilingualQuerySet')
+        # TODO:
+        # new_args = []
+        # for key in fields:
+        #     new_args.append(rewrite_lookup_key(self.model, key))
+        # return super(MultilingualQuerySet, self).only(*new_args)
+
     def order_by(self, *field_names):
         new_args = []
         for key in field_names:
